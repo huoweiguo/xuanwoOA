@@ -75,6 +75,19 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/work',
+    component: Layout,
+    redirect: 'noredirect',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/work'),
+        name: 'Index',
+        meta: { title: '工作台', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
     path: '/user',
     component: Layout,
     hidden: true,
