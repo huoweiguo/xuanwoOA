@@ -88,6 +88,58 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/finance',
+    component: Layout,
+    redirect: 'cmaker',
+    meta: { title: '财务管理', icon: 'dashboard', affix: true },
+    children: [
+      {
+        path: 'cmaker',
+        component: () => import('@/views/finance/cmaker'),
+        name: 'Profile',
+        meta: { title: '制单队列', icon: 'user' }
+      },
+      {
+        path: 'writeOff',
+        component: () => import('@/views/finance/writeOff'),
+        name: 'writeOff',
+        meta: { title: '核销队列', icon: 'user' }
+      },
+      {
+        path: 'Invoice',
+        component: () => import('@/views/finance/Invoice'),
+        name: 'Invoice',
+        meta: { title: '开票队列', icon: 'user' }
+      },
+      {
+        path: 'income',
+        component: Layout,
+        redirect: 'omega',
+        meta: { title: '项目收入统计', icon: 'dashboard', affix: true },
+        children: [
+          {
+            path: 'omega',
+            component: () => import('@/views/finance/income/omega'),
+            name: 'omega',
+            meta: { title: 'OMEGA项目收入统计', icon: 'user' }
+          },
+          {
+            path: 'other',
+            component: () => import('@/views/finance/income/other'),
+            name: 'other',
+            meta: { title: '其他品牌项目收入统计', icon: 'user' }
+          },
+          {
+            path: 'notPayment',
+            component: () => import('@/views/finance/income/notPayment'),
+            name: 'notPayment',
+            meta: { title: '未收款项目统计', icon: 'user' }
+          },
+        ]
+      }
+    ]
+  },
+  {
     path: '/user',
     component: Layout,
     hidden: true,
