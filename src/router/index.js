@@ -77,7 +77,7 @@ export const constantRoutes = [
   {
     path: '/work',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'index',
     children: [
       {
         path: 'index',
@@ -85,6 +85,22 @@ export const constantRoutes = [
         name: 'Index',
         meta: { title: '工作台', icon: 'dashboard', affix: true }
       }
+    ]
+  },
+  {
+    path: '/project',
+    component: Layout,
+    redirect: 'index',
+    alwaysShow: true,
+    meta: { title: '项目管理', icon: 'dashboard', affix: true },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/project'),
+        name: 'Index',
+        meta: { title: 'OMG', icon: 'dashboard', affix: true }
+      },
+      
     ]
   },
   {
