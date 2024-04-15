@@ -156,6 +156,27 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/approval',
+    component: Layout,
+    redirect: 'payment',
+    alwaysShow: true,
+    meta: { title: '审批管理', icon: 'dashboard', affix: true },
+    children: [
+      {
+        path: 'payment',
+        component: () => import('@/views/approval/payment'),
+        name: 'payment',
+        meta: { title: '付款审批', icon: 'dashboard', affix: true }
+      },
+      {
+        path: 'invoice',
+        component: () => import('@/views/approval/invoice'),
+        name: 'invoice',
+        meta: { title: '开票审批', icon: 'dashboard', affix: true }
+      },
+    ]
+  },
+  {
     path: '/user',
     component: Layout,
     hidden: true,
