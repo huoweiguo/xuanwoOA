@@ -174,8 +174,9 @@
             class-name="small-padding fixed-width"
             fixed="right"
           >
-            <template >
+            <template slot-scope="scope">
               <el-button
+                @click="open2 = true"
                 type="text"
                 size="small"
                 icon="el-icon-view"
@@ -186,6 +187,7 @@
                 icon="el-icon-edit"
               >编辑</el-button>
               <el-button
+                @click="handleDelete(scope.row)"
                 size="mini"
                 type="text"
                 icon="el-icon-delete"
@@ -201,7 +203,7 @@
       @pagination="getList"
     />
 
-    <!-- 预览界面 -->
+    <!-- 添加项目界面 -->
     <el-dialog :title="title" :visible.sync="open" width="780px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-row>
@@ -229,6 +231,123 @@
         <el-button @click="cancel">取 消</el-button>
       </div>
     </el-dialog>
+
+    <!-- 查看项目界面 -->
+    <el-dialog :visible.sync="open2" width="1080px" append-to-body>
+      <div class="check-box">
+        <h3>成本明细</h3>
+        <p>成本总计：7777666元</p>
+        <el-table>
+          <el-table-column label="序号" type="index" width="50" align="center">
+          <template slot-scope="scope">
+            <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>
+          </template>
+        </el-table-column>
+          <el-table-column
+            label="负责人"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="服务内容"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="供应商"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="付款金额"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="专票/普票"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="供应商发票"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="审批状态"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="付款状态"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+        </el-table>
+        <h3>收入明细</h3>
+        <div class="income">
+          <p>税前收入总计：1222222</p>
+          <p>税后收入总计：1222222</p>
+        </div>
+        <el-table>
+          <el-table-column label="序号" type="index" width="50" align="center">
+          <template slot-scope="scope">
+            <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>
+          </template>
+        </el-table-column>
+          <el-table-column
+            label="区域/部门"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="对接人"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="PO"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="税前收入"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="税后收入"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="开票情况"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+          <el-table-column
+            label="收款状态"
+            align="center"
+            prop=""
+            :show-overflow-tooltip="true"
+          />
+        </el-table>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -252,7 +371,14 @@ export default {
         pageNum: 1,
         pageSize: 10,
       },
+      form:{
+
+      },
+      rules:[],
+      // 添加项目开关
       open: false,
+      // 查看项目开关
+      open2:false,
       title: '添加项目'
     }
   },
@@ -284,6 +410,16 @@ export default {
       this.single = selection.length != 1;
       this.multiple = !selection.length;
     },
+     /** 删除按钮操作 */
+     handleDelete(row) {
+      const userIds = row.id || this.ids;
+      this.$modal.confirm('是否确认删除用户编号为"' + userIds + '"的数据项？').then(function() {
+        return delUser(userIds);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("删除成功");
+      }).catch(() => {});
+    },
     submitForm(){
       this.$refs["form"].validate(valid => {
         if (valid) {}
@@ -298,4 +434,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.check-box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.income{
+  display: flex;
+  p{
+    margin-left: 20px;
+  }
+}
 </style>

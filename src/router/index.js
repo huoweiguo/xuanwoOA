@@ -104,6 +104,23 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/basics',
+    component: Layout,
+    redirect: 'index',
+    alwaysShow: true,
+    meta: { title: '基础管理', icon: 'dashboard', affix: true },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/system/supplier'),
+        name: 'Index',
+        meta: { title: '供应商列表', icon: 'dashboard', affix: true }
+      },
+      
+    ]
+  },
+
+  {
     path: '/finance',
     component: Layout,
     redirect: 'cmaker',
