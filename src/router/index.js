@@ -146,8 +146,7 @@ export const constantRoutes = [
       },
       {
         path: 'income',
-        component: Layout,
-        redirect: 'omega',
+        component: ()=>import('@/views/finance/income/index'),
         meta: { title: '项目收入统计', icon: 'dashboard', affix: true },
         children: [
           {
@@ -190,6 +189,12 @@ export const constantRoutes = [
         component: () => import('@/views/approval/invoice'),
         name: 'invoice',
         meta: { title: '开票审批', icon: 'dashboard', affix: true }
+      },
+      {
+        path: 'loan',
+        component: () => import('@/views/approval/loan'),
+        name: 'loan',
+        meta: { title: '借款核销审批', icon: 'dashboard', affix: true }
       },
     ]
   },

@@ -7,6 +7,7 @@
           plain
           size="mini"
           :disabled="multiple"
+          @click="submitForm(1, true)"
           v-hasPermi="['tool:gen:code']"
         >通过</el-button>
       </el-col>
@@ -15,6 +16,8 @@
            type="danger"
           plain
           size="mini"
+          :disabled="multiple"
+          @click="submitForm(2, true)"
           v-hasPermi="['tool:gen:import']"
         >驳回</el-button>
       </el-col>
@@ -95,7 +98,7 @@
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template> -->
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" fixed="right">
         <template slot-scope="scope">
           <el-button
             type="text"
@@ -116,7 +119,7 @@
     />
     <!-- 预览界面 -->
     <el-dialog :title="title" :visible.sync="open" width="780px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="120px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="项目编号：" prop="noticeTitle">
@@ -174,8 +177,8 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="cancel">取 消</el-button>
-        <el-button type="primary" @click="submitForm">通过</el-button>
-        <el-button  type="danger" @click="submitForm">驳回</el-button>
+        <el-button type="primary" @click="submitForm(1)">通过</el-button>
+        <el-button  type="danger" @click="submitForm(2)">驳回</el-button>
       </div>
     </el-dialog>
   </div>
@@ -204,7 +207,7 @@ export default {
       // 总条数
       total: 0,
       // 表数据
-      tableList: [],
+      tableList: [{id: 1}],
       // 日期范围
       dateRange: "",
       // 查询参数
@@ -260,10 +263,8 @@ export default {
       this.single = selection.length != 1;
       this.multiple = !selection.length;
     },
-    submitForm(){
-      this.$refs["form"].validate(valid => {
-        if (valid) {}
-      })  
+    submitForm(state, type){
+      this.open = false
     },
     cancel(){
       this.open = false
