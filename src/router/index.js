@@ -111,9 +111,15 @@ export const constantRoutes = [
     meta: { title: '基础管理', icon: 'dashboard', affix: true },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/system/supplier'),
-        name: 'Index',
+        path: 'brand',
+        component: () => import('@/views/system/brand'),
+        name: 'brand',
+        meta: { title: '品牌方列表', icon: 'dashboard', affix: true }
+      },
+      {
+        path: 'supply',
+        component: () => import('@/views/system/supply'),
+        name: 'supply',
         meta: { title: '供应商列表', icon: 'dashboard', affix: true }
       },
       

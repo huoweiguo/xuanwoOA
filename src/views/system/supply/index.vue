@@ -1,11 +1,16 @@
 <template>
   <div class="app-container">
     <!-- 搜索 -->
-    <el-form ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="90px">
-      
-      <el-form-item label="品牌方名称" prop="">
+    <el-form ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="60px"> 
+      <el-form-item label="类型" prop="">
         <el-input
-          placeholder="请输入品牌方名称"
+          placeholder="类型"
+          clearable
+        />
+      </el-form-item>
+      <el-form-item label="供应商名称" prop="" label-width="90px">
+        <el-input
+          placeholder="请输入供应商名称"
           clearable
         />
       </el-form-item>
@@ -17,7 +22,7 @@
 
     <el-row :gutter="10" class="mb8">
       <el-col :span="1.5">
-        <el-button @click="open = true" type="primary" size="mini">添加品牌商</el-button>
+        <el-button @click="open = true" type="primary" size="mini">添加供应商</el-button>
       </el-col>
     </el-row>
 
@@ -28,7 +33,13 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="品牌方名称"
+        label="类型"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="供应商名称"
         align="center"
         prop=""
         :show-overflow-tooltip="true"
@@ -47,6 +58,12 @@
       />
       <el-table-column
         label="税号"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="地址"
         align="center"
         prop=""
         :show-overflow-tooltip="true"
@@ -80,42 +97,39 @@
       :limit.sync="queryParams.pageSize"
       @pagination="getList"
     />
+
     <!-- 添加品牌商 -->
     <el-dialog :title="title" :visible.sync="open" width="780px" append-to-body>
       <el-form ref="form" label-position="top" :model="form" :rules="rules" label-width="120px">
         <el-row>
           <el-col :span="10">
-            <el-form-item label="品牌方名称：" prop="">
+            <el-form-item label="类型：" prop="">
               <el-input/>
             </el-form-item>
           </el-col>
           <el-col :span="10" :push="2">
+            <el-form-item label="供应商名称：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10">
             <el-form-item label="开户行：" prop="">
               <el-input/>
             </el-form-item>
           </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="10">
+          <el-col :span="10" :push="2">
             <el-form-item label="银行账号：" prop="">
               <el-input/>
             </el-form-item>
           </el-col>
-          <el-col :span="10" :push="2">
+          <el-col :span="10">
             <el-form-item label="税号：" prop="">
               <el-input/>
             </el-form-item>
           </el-col>
-          <el-col :span="24">
-            <el-form-item label="发票寄送地址：" prop="">
-              <div class="flex">
-                  <div>
-                    <el-input class="inputW"/>
-                    <el-input class="inputW"/>
-                  </div>
-                  <el-button class="button-new-tag" type="danger">删除</el-button>
-                  <el-button class="button-new-tag" type="primary">+ 添加</el-button>
-               </div>
+          <el-col :span="10" :push="2">
+            <el-form-item label="地址：" prop="">
+              <el-input/>
             </el-form-item>
           </el-col>
           <el-col :span="8">
@@ -136,12 +150,13 @@
                </div>
             </el-form-item>
           </el-col>
+
         </el-row>
+        <div slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="submitForm">确 定</el-button>
+          <el-button @click="cancel">取 消</el-button>
+        </div>
       </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm">确 定</el-button>
-        <el-button @click="cancel">取 消</el-button>
-      </div>
     </el-dialog>
   </div>
 </template>
@@ -152,6 +167,7 @@ export default {
     return {
       // 显示搜索条件
       showSearch: true,
+      open:false,
       // 遮罩层
       loading: false,
       // 总条数
@@ -162,17 +178,13 @@ export default {
           id:1
         }
       ],
-      form:{
-
-      },
+      form:{},
       rules:{},
       queryParams: {
         pageNum: 1,
         pageSize: 10,
       },
-      // 添加项目开关
-      open: false,
-      title: '添加品牌商'
+      title: '添加供应商'
     }
   },
   methods:{
@@ -221,7 +233,6 @@ export default {
     cancel(){
       this.open = false
     }
-
   }
 }
 </script>
@@ -239,5 +250,8 @@ export default {
 .button-new-tag{
   height: 40px;
   margin-bottom: 10px;
+}
+::v-deep .el-form-item--medium .el-form-item__label{
+  line-height: 15px;
 }
 </style>

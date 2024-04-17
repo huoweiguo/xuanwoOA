@@ -185,6 +185,7 @@
                 size="mini"
                 type="text"
                 icon="el-icon-edit"
+                @click="open3 = true"
               >编辑</el-button>
               <el-button
                 @click="handleDelete(scope.row)"
@@ -348,6 +349,95 @@
         </el-table>
       </div>
     </el-dialog>
+
+    <!-- 编辑项目界面 -->
+    <el-dialog :visible.sync="open3" width="780px" append-to-body>
+      <el-form ref="form" :model="editForm" :rules="editRules" label-width="120px">
+        <el-row>
+          <el-col :span="10">
+            <el-form-item label="项目编号：" prop="">
+              <el-input disabled/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10" :push="2">
+            <el-form-item label="项目名称：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10">
+            <el-form-item label="项目时间：" prop="">
+              <el-date-picker
+                style="width: 240px"
+                value-format="yyyy-MM-dd"
+                type="daterange"
+                range-separator="-"
+                start-placeholder="开始日期"
+                end-placeholder="结束日期"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10" :push="2">
+            <el-form-item label="项目经理：" prop="">
+              <el-select placeholder="请选择开票情况" clearable>
+                <el-option
+                  v-for="dict in []"
+                  :key="dict.value"
+                  :label="dict.label"
+                  :value="dict.value"
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="24">
+            <el-form-item label="项目收入：" prop="">
+              <el-input class="inputW" disabled/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10">
+            <el-form-item label="区域/部门：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10" :push="2">
+            <el-form-item label="对接人：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10">
+            <el-form-item label="税前收入：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10" :push="2">
+            <el-form-item label="税后收入：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10">
+            <el-form-item label="PO：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10" :push="2">
+            <el-form-item label="备注：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10" :push="2">
+            <div>
+              <el-button class="button-new-tag" type="primary">+ 添加</el-button>
+              <el-button class="button-new-tag" type="danger">移除</el-button>
+            </div>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -374,12 +464,15 @@ export default {
       form:{
 
       },
-      rules:[],
+      rules:{},
       // 添加项目开关
       open: false,
       // 查看项目开关
       open2:false,
-      title: '添加项目'
+      title: '添加项目',
+      open3:false,
+      editForm:{},
+      editRules:{}
     }
   },
   methods:{
@@ -446,5 +539,14 @@ export default {
   p{
     margin-left: 20px;
   }
+}
+.flex{
+  display: flex;
+  align-items: end;
+}
+.inputW{
+  display: block;
+  width: 188px;
+  margin:0px 10px 10px 0;
 }
 </style>
