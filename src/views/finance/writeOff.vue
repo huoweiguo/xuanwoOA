@@ -147,7 +147,7 @@
         </template> -->
       </el-table-column>
       <el-table-column label="票面开票时间" align="center" prop="updateTime" width="160" />
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" fixed="right">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="160" fixed="right">
         <template slot-scope="scope">
           <el-button
             type="text"
@@ -174,8 +174,8 @@
       @pagination="getList"
     />
     <!-- 预览界面 -->
-    <el-dialog :title="title" :visible.sync="open" width="780px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+    <el-dialog :title="title" :visible.sync="open" width="790px" append-to-body>
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-row>
           <el-col :span="8">
             <el-form-item label="项目编号：" prop="noticeTitle">
@@ -203,11 +203,11 @@
               </el-form-item>
             </el-col>
           </template>
-          <el-col :span="12">
-            <el-form-item label="核销发票总计：" prop="noticeTitle">
+          <el-col :span="16">
+            <el-form-item label="核销发票总计：" prop="noticeTitle" label-width="120px">
             </el-form-item>
           </el-col>
-          <el-col :span="12">
+          <el-col :span="8">
             <el-form-item label="支出总计：" prop="noticeTitle">
             </el-form-item>
           </el-col>
@@ -218,17 +218,17 @@
                 <el-table-column
                   prop="date"
                   label="类别"
-                  width="260">
+                  width="250">
                 </el-table-column>
                 <el-table-column
                   prop="name"
                   label="金额"
-                  width="260">
+                  width="250">
                 </el-table-column>
                 <el-table-column
                   prop="address"
                   label="后续操作"
-                  width="260">
+                  width="250">
                 </el-table-column>
               </el-table>
           </el-col>
@@ -250,7 +250,7 @@
           </el-col>
           
           <el-col :span="8">
-            <el-form-item label="审核状态">
+            <el-form-item label="审核状态：">
 
             </el-form-item>
           </el-col>
@@ -288,7 +288,7 @@ export default {
       // 总条数
       total: 0,
       // 表数据
-      tableList: [],
+      tableList: [{id: 1}],
       // 日期范围
       dateRange: "",
       // 查询参数

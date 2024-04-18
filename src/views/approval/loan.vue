@@ -35,21 +35,21 @@
           align="center"
           prop="tableComment"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column
           label="申请人"
           align="center"
           prop="className"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column
           label="借款金额"
           align="center"
           prop="className"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column label="操作" align="center" class-name="small-padding fixed-width" fixed="right">
           <template slot-scope="scope">
@@ -106,35 +106,35 @@
           align="center"
           prop="tableComment"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column
           label="申请人"
           align="center"
           prop="className"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column
           label="借款金额"
           align="center"
           prop="className"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column
           label="核销金额"
           align="center"
           prop="className"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column
           label="借款/核销差额"
           align="center"
           prop="className"
           :show-overflow-tooltip="true"
-          width="120"
+          width=""
         />
         <el-table-column label="操作" align="center" class-name="small-padding fixed-width" fixed="right">
           <template slot-scope="scope">

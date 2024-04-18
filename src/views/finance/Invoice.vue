@@ -173,7 +173,7 @@
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template> -->
       </el-table-column>
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="160" fixed="right">
         <template slot-scope="scope">
           <el-button
             type="text"
@@ -201,7 +201,7 @@
     />
     <!-- 预览界面 -->
     <el-dialog :title="title" :visible.sync="open" width="780px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="项目编号：" prop="noticeTitle">
@@ -259,12 +259,12 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="发票" prop="noticeType">
+            <el-form-item label="发票：" prop="noticeType">
                <file-upload />
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="开票日期">
+            <el-form-item label="开票日期：">
               <el-date-picker
                 v-model="dateRange"
                 style="width: 240px"
@@ -277,7 +277,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="收款状态">
+            <el-form-item label="收款状态：">
               <el-radio-group v-model="form.status">
                 <!-- <el-radio
                   v-for="dict in dict.type.sys_notice_status"
@@ -288,7 +288,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="收款日期">
+            <el-form-item label="收款日期：">
               <el-date-picker
                 v-model="dateRange"
                 style="width: 240px"
@@ -334,7 +334,7 @@ export default {
       // 总条数
       total: 0,
       // 表数据
-      tableList: [],
+      tableList: [{id: 1}],
       // 日期范围
       dateRange: "",
       // 查询参数
@@ -392,7 +392,9 @@ export default {
     },
     submitForm(){
       this.$refs["form"].validate(valid => {
-        if (valid) {}
+        if (valid) {
+          this.open = false
+        }
       })  
     },
     cancel(){

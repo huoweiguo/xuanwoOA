@@ -183,7 +183,7 @@
         </template> -->
       </el-table-column>
       <el-table-column label="票面开票时间" align="center" prop="updateTime" width="160" />
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" fixed="right">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="160" fixed="right">
         <template slot-scope="scope">
           <el-button
             type="text"
@@ -211,7 +211,7 @@
     />
     <!-- 预览界面 -->
     <el-dialog :title="title" :visible.sync="open" width="780px" append-to-body>
-      <el-form ref="form" :model="form" :rules="rules" label-width="80px">
+      <el-form ref="form" :model="form" :rules="rules" label-width="100px">
         <el-row>
           <el-col :span="12">
             <el-form-item label="付款日期：" prop="noticeTitle">
@@ -270,21 +270,21 @@
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="合同" prop="noticeType">
+            <el-form-item label="合同：" prop="noticeType">
              
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="报价单">
+            <el-form-item label="报价单：">
 
             </el-form-item>
           </el-col>
           <el-col :span="24">
-            <el-form-item label="发票">
+            <el-form-item label="发票：">
             </el-form-item>
           </el-col>
         </el-row>
-        <p>票面开票日期:2024-02-27</p>
+        <p>票面开票日期：2024-02-27</p>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -317,7 +317,7 @@ export default {
       // 总条数
       total: 0,
       // 表数据
-      tableList: [],
+      tableList: [{id: 1}],
       // 日期范围
       dateRange: "",
       // 查询参数

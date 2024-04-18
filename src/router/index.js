@@ -205,6 +205,21 @@ export const constantRoutes = [
     ]
   },
   {
+    path: '/file',
+    component: Layout,
+    redirect: 'some',
+    alwaysShow: true,
+    meta: { title: '公共文件', icon: 'user' },
+    children: [
+      {
+        path: 'some',
+        component: () => import('@/views/files/some'),
+        name: 'some',
+        meta: { title: 'xxx文件', icon: 'user', affix: true }
+      }
+    ]
+  },
+  {
     path: '/user',
     component: Layout,
     hidden: true,
