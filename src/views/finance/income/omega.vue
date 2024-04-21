@@ -13,7 +13,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="loading" :data="tableList">
+    <el-table border v-loading="loading" :data="tableList">
       <el-table-column label="序号" type="index" width="50" align="center">
         <template slot-scope="scope">
           <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>

@@ -21,13 +21,13 @@
           type="primary"
           plain
           size="mini"
-          @click="handleEditTable(scope.row, 2)"
+          @click="handleEditTable(null, 3)"
           v-hasPermi="['tool:gen:code']"
         >添加文件</el-button>
       </el-col>
     </el-row>
 
-    <el-table v-loading="loading" :data="tableList">
+    <el-table border v-loading="loading" :data="tableList">
       <el-table-column label="序号" type="index" width="50" align="center">
         <template slot-scope="scope">
           <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>
@@ -173,6 +173,17 @@ export default {
     handleEditTable(row, state) {
       this.open = true
       this.form = row
+      switch(state){
+        case 1:
+          this.title = '查看'
+          break;
+        case 2:
+          this.title = '编辑'
+          break;
+        case 3:
+          this.title = '添加文件'
+          break;    
+      }
     },
     submitForm(){
       this.$refs["form"].validate(valid => {
@@ -181,7 +192,17 @@ export default {
     },
     cancel(){
       this.open = false
-    }
+    },
+    /** 删除按钮操作 */
+    handleDelete(row) {
+      const jobIds = row.jobId || this.ids;
+      this.$modal.confirm('是否确认删除定时任务编号为"' + jobIds + '"的数据项？').then(function() {
+        return delJob(jobIds);
+      }).then(() => {
+        this.getList();
+        this.$modal.msgSuccess("删除成功");
+      }).catch(() => {});
+    },
   }
 };
 </script>

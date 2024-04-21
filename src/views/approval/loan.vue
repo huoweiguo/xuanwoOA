@@ -23,7 +23,7 @@
         </el-col>
       </el-row>
 
-      <el-table v-loading="loanLoading" :data="loanTableList" @selection-change="handleSelectionLoanChange">
+      <el-table border v-loading="loanLoading" :data="loanTableList" @selection-change="handleSelectionLoanChange">
         <el-table-column type="selection" align="center" width="55"></el-table-column>
         <el-table-column label="序号" type="index" width="50" align="center">
           <template slot-scope="scope">
@@ -94,7 +94,7 @@
         </el-col>
       </el-row>
 
-      <el-table v-loading="offLoading" :data="writeOffTableList" @selection-change="handleSelectionOffChange">
+      <el-table border v-loading="offLoading" :data="writeOffTableList" @selection-change="handleSelectionOffChange">
         <el-table-column type="selection" align="center" width="55"></el-table-column>
         <el-table-column label="序号" type="index" width="50" align="center">
           <template slot-scope="scope">

@@ -13,7 +13,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="loading" :data="tableList">
+    <el-table border v-loading="loading" :data="tableList">
       <el-table-column
         label="品牌"
         align="center"
