@@ -1,28 +1,29 @@
 <template>
   <div class="app-container">
     <!-- 项目经理权限 -->
-    <!-- <div>
+    <div>
         <div>
           <h3>项目付款</h3>
           <el-table
             v-loading="loading"
             :data="payList"
             row-key="menuId"
+            border=""
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="id" label="项目编号" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="name" label="项目名称" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true">
+            <el-table-column prop="id" label="项目编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="name" label="项目名称" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center">
               <template slot-scope="scope">
                 <dict-tag :options="dict.type.sys_notice_status" :value="scope.row.status"/>
               </template>
             </el-table-column>
-            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="供应商发票" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="date" label="票面开票日期" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="供应商发票" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="date" label="票面开票日期" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
       <div>
@@ -30,19 +31,20 @@
           <el-table
             v-loading="loading"
             row-key="menuId"
+            border=""
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="品牌方" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="项目编号" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="区域/部门" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="对接人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="PO" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="税前金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="税后金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="开票状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="收款状态" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="品牌方" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="项目编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="区域/部门" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="对接人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="PO" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="税前金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="税后金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="开票状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="收款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
       <div>
@@ -50,43 +52,45 @@
           <el-table
             v-loading="loading"
             row-key="menuId"
+            border
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="核销金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款/核销差额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="发票金额（含冲票）" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="发票/核销差额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="补齐/退回" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="核销金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款/核销差额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="发票金额（含冲票）" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="发票/核销差额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="补齐/退回" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
-    </div> -->
+    </div>
     <!-- 老板权限 -->
-    <!-- <div>
+    <div>
       <div>
           <h3>项目待审批</h3>
           <el-table
             v-loading="loading"
             :data="payList"
             row-key="menuId"
+            border
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="id" label="项目编号" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="name" label="项目名称" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="付款金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true">
+            <el-table-column prop="id" label="项目编号" :show-overflow-tooltip="true" align="center" header="60"></el-table-column>
+            <el-table-column prop="name" label="项目名称" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="付款金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center">
               <template slot-scope="scope">
                 <dict-tag :options="dict.type.sys_notice_status" :value="scope.row.status"/>
               </template>
             </el-table-column>
-            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="供应商发票" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="供应商发票" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
       <div>
@@ -94,19 +98,20 @@
           <el-table
             v-loading="loading"
             row-key="menuId"
+            border=""
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="品牌方" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="项目编号" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="区域/部门" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="对接人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="PO" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="税前金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="税后金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="发票金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="品牌方" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="项目编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="区域/部门" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="对接人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="PO" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="税前金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="税后金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="发票金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
       <div>
@@ -114,12 +119,13 @@
         <el-table
             v-loading="loading"
             row-key="menuId"
+            border
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款状态" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
       <div>
@@ -127,19 +133,20 @@
         <el-table
             v-loading="loading"
             row-key="menuId"
+            border=""
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="核销金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款/核销差额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="发票金额（含冲票）" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="发票/核销差额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="核销金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款/核销差额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="发票金额（含冲票）" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="发票/核销差额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center"></el-table-column>
          </el-table>
       </div>
-    </div> -->
+    </div>
     <!-- 财务权限 -->
     <div>
       <div>
@@ -148,23 +155,25 @@
             v-loading="loading"
             :data="payList"
             row-key="menuId"
+            border
+            width="200"
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="付款日期" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="id" label="项目编号" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="name" label="项目名称" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="付款金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true">
+            <el-table-column prop="" label="付款日期" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="id" label="项目编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="name" label="项目名称" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="付款金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center">
               <template slot-scope="scope">
                 <dict-tag :options="dict.type.sys_notice_status" :value="scope.row.status"/>
               </template>
             </el-table-column>
-            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="供应商发票" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="票面开票时间" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="供应商发票" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="票面开票时间" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
       <div>
@@ -172,20 +181,21 @@
           <el-table
             v-loading="loading"
             row-key="menuId"
+            border
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="品牌方" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="项目编号" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="区域/部门" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="对接人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="PO" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="税前金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="税后金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="开票状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="收款状态" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="品牌方" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="项目编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="区域/部门" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="对接人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="PO" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="税前金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="税后金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="开票状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="收款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
       <div>
@@ -193,18 +203,19 @@
         <el-table
             v-loading="loading"
             row-key="menuId"
+            border=""
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="核销金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="借款/核销差额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="发票金额（含冲票）" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="发票/核销差额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="补齐/退回" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="借款编号" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="核销金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="借款/核销差额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="发票金额（含冲票）" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="发票/核销差额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="补齐/退回" :show-overflow-tooltip="true" align="center"></el-table-column>
          </el-table>
       </div>
       <div>
@@ -212,15 +223,16 @@
         <el-table
             v-loading="loading"
             row-key="menuId"
+            border
             :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
           >
-            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true" width="160"></el-table-column>
-            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="付款金额" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true"></el-table-column>
-            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true"></el-table-column>
+            <el-table-column prop="" label="项目名称" :show-overflow-tooltip="true" width="160" align="center"></el-table-column>
+            <el-table-column prop="" label="服务内容" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="付款金额" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="供应商" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="申请人" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="审核状态" :show-overflow-tooltip="true" align="center"></el-table-column>
+            <el-table-column prop="" label="付款状态" :show-overflow-tooltip="true" align="center"></el-table-column>
           </el-table>
       </div>
     </div>

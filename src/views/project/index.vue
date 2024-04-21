@@ -33,30 +33,18 @@
       <el-form-item label="开票情况" prop="">
         <el-select placeholder="请选择开票情况" clearable>
           <el-option
-            v-for="dict in []"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
           />
         </el-select>
       </el-form-item>
       <el-form-item label="收款情况" prop="">
         <el-select placeholder="请选择收款情况" clearable>
           <el-option
-            v-for="dict in []"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
           />
         </el-select>
       </el-form-item>
       <el-form-item label="供应商发票" prop="" label-width="90px">
         <el-select placeholder="请选择供应商发票" clearable>
           <el-option
-            v-for="dict in []"
-            :key="dict.value"
-            :label="dict.label"
-            :value="dict.value"
           />
         </el-select>
       </el-form-item>
@@ -80,7 +68,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="loading" :data="tableList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="tableList" @selection-change="handleSelectionChange" border="">
       <el-table-column label="序号" type="index" width="50" align="center">
         <template slot-scope="scope">
           <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>
@@ -380,10 +368,6 @@
             <el-form-item label="项目经理：" prop="">
               <el-select placeholder="请选择开票情况" clearable>
                 <el-option
-                  v-for="dict in []"
-                  :key="dict.value"
-                  :label="dict.label"
-                  :value="dict.value"
                 />
               </el-select>
             </el-form-item>

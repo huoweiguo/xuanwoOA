@@ -82,7 +82,7 @@ export const constantRoutes = [
       {
         path: 'index',
         component: () => import('@/views/work'),
-        name: 'Index',
+        name: 'index',
         meta: { title: '工作台', icon: 'dashboard', affix: true }
       }
     ]
@@ -97,7 +97,7 @@ export const constantRoutes = [
       {
         path: 'index',
         component: () => import('@/views/project'),
-        name: 'Index',
+        name: 'index',
         meta: { title: 'OMG', icon: 'dashboard', affix: true }
       },
       
@@ -121,6 +121,22 @@ export const constantRoutes = [
         component: () => import('@/views/system/supply'),
         name: 'supply',
         meta: { title: '供应商列表', icon: 'dashboard', affix: true }
+      },
+      
+    ]
+  },
+  {
+    path: '/apply',
+    component: Layout,
+    redirect: 'index',
+    alwaysShow: true,
+    meta: { title: '申请管理', icon: 'dashboard', affix: true },
+    children: [
+      {
+        path: 'payment',
+        component: () => import('@/views/apply/payment'),
+        name: 'payment',
+        meta: { title: '项目付款申请', icon: 'dashboard', affix: true }
       },
       
     ]

@@ -26,7 +26,7 @@
       </el-col>
     </el-row>
 
-    <el-table v-loading="loading" :data="tableList" @selection-change="handleSelectionChange">
+    <el-table v-loading="loading" :data="tableList" @selection-change="handleSelectionChange" border>
       <el-table-column label="序号" type="index" width="50" align="center">
         <template slot-scope="scope">
           <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>
