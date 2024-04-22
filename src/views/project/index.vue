@@ -77,79 +77,78 @@
       <el-table-column
         label="项目编号"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
       />
       <el-table-column
         label="项目名称"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="项目时间"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="项目经理"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="项目成本"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="税前收入"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="税后收入"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="供应商发票"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="开票情况"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="收款情况"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       />
       <el-table-column
         label="文件"
         align="center"
-        prop="tableName"
+        prop=""
         :show-overflow-tooltip="true"
-        width="120"
+
       >
         <template>
           <el-button type="text">查看</el-button>

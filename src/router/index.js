@@ -138,6 +138,24 @@ export const constantRoutes = [
         name: 'payment',
         meta: { title: '项目付款申请', icon: 'dashboard', affix: true }
       },
+      {
+        path: 'ticket',
+        component: () => import('@/views/apply/ticket'),
+        name: 'ticket',
+        meta: { title: '项目开票申请', icon: 'dashboard', affix: true }
+      },
+      {
+        path: 'desBorrow',
+        component: () => import('@/views/apply/desBorrow'),
+        name: 'desBorrow',
+        meta: { title: '借款核销申请', icon: 'dashboard', affix: true }
+      },
+      {
+        path: 'adminPayment',
+        component: () => import('@/views/apply/adminPayment'),
+        name: 'adminPayment',
+        meta: { title: '行政付款申请', icon: 'dashboard', affix: true }
+      },
       
     ]
   },

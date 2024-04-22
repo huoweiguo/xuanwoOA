@@ -118,7 +118,6 @@
       >
         <template slot-scope="scope">
           <el-button
-            @click="open2 = true"
             type="text"
             size="small"
             icon="el-icon-view"
@@ -127,8 +126,12 @@
             size="mini"
             type="text"
             icon="el-icon-edit"
-            @click="open3 = true"
           >编辑</el-button>
+          <el-button
+            size="mini"
+            type="text"
+            @click="cancelOpen = true"
+          >撤回</el-button>
           <el-button
             @click="handleDelete(scope.row)"
             size="mini"
@@ -138,8 +141,119 @@
         </template>
       </el-table-column>
     </el-table>
+    <pagination
+      v-show="total>0"
+      :total="total"
+      :page.sync="queryParams.pageNum"
+      :limit.sync="queryParams.pageSize"
+      @pagination="getList"
+    />
     <!-- 添加付款申请 -->
     <el-dialog :title="title" :visible.sync="open" width="780px" append-to-body>
+      <el-form ref="form" label-position="top" :model="form" :rules="rules" label-width="120px">
+        <el-row>
+          <el-col :span="11">
+            <el-form-item label="项目编号：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="11" :push="2">
+            <el-form-item label="项目名称：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="服务内容：" prop="">
+              <el-input  type="textarea" :rows="2"/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="11">
+            <el-form-item label="供应商：" prop="">
+              <el-select clearable>
+                <el-option
+                />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="11" :push="2">
+            <el-form-item label="开户行：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="11">
+            <el-form-item label="银行账号：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="11" :push="2">
+            <el-form-item label="付款金额：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="24">
+            <el-form-item label="付款备注：" prop="">
+              <el-input  type="textarea" :rows="2"/>
+            </el-form-item>
+          </el-col>
+          <el-row>
+            <el-col :span="8">
+              <el-form-item label="合同：" prop="">
+                <FileUpload disabled :limit="1"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="8">
+              <el-form-item label="报价单：" prop="">
+                <FileUpload disabled :limit="1"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="8">
+              <el-form-item label="发票：" prop="">
+                <FileUpload disabled :limit="1"/>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="发票类型：" prop="">
+              <el-select clearable>
+                <el-option
+                />
+              </el-select>
+            </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="11">
+              <el-form-item label="开票日期：" prop="">
+                <el-input />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
+
+    <!-- 撤回 -->
+    <el-dialog :title="cancelTitle" :visible.sync="cancelOpen" width="780px" append-to-body>
+      <el-form ref="form" :model="cancelForm" :rules="cancelRules" label-width="120px">
+        <el-col :span="24">
+            <el-form-item label="撤回原因：" prop="">
+              <el-input  type="textarea" :rows="2"/>
+            </el-form-item>
+          </el-col>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -165,13 +279,19 @@ export default {
 
       },
       rules:{},
+      cancelForm:{
+
+      },
+      cancelRules:{},
       queryParams: {
         pageNum: 1,
         pageSize: 10,
       },
       // 添加付款申请
-      open: true,
-      title: '添加品牌商'
+      open: false,
+      cancelOpen:false,
+      title: '添加付款申请',
+      cancelTitle:'撤回'
     }
   },
   methods:{
@@ -225,3 +345,31 @@ export default {
 
 }
 </script>
+
+<style scoped lang="scss">
+.check-box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.income{
+  display: flex;
+  p{
+    margin-left: 20px;
+  }
+}
+.flex{
+  display: flex;
+  align-items: end;
+}
+.inputW{
+  display: block;
+  width: 188px;
+  margin:0px 10px 10px 0;
+}
+::v-deep .el-form-item--medium .el-form-item__label{
+  line-height: 15px;
+}
+</style>
