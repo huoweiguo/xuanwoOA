@@ -136,6 +136,13 @@
         :show-overflow-tooltip="true"
         width="120"
       />
+      <el-table-column
+        label="发票/核销差额"
+        align="center"
+        prop="className"
+        :show-overflow-tooltip="true"
+        width="120"
+      />
       <el-table-column label="审核状态" align="center" prop="status">
         <!-- <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
@@ -146,7 +153,6 @@
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template> -->
       </el-table-column>
-      <el-table-column label="票面开票时间" align="center" prop="updateTime" width="160" />
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="160" fixed="right">
         <template slot-scope="scope">
           <el-button
@@ -176,20 +182,87 @@
     <!-- 预览界面 -->
     <el-dialog :title="title" :visible.sync="open" width="790px" append-to-body>
       <el-form ref="form" :model="form" :rules="rules" label-width="100px">
-        <el-row>
-          <el-col :span="8">
-            <el-form-item label="项目编号：" prop="noticeTitle">
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="借款日期：" prop="noticeTitle">
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="借款金额：" prop="noticeTitle">
-            </el-form-item>
-          </el-col>
-          <template>
+        <template v-if="state">
+          <el-row>
+            <el-col :span="8">
+              <el-form-item label="项目编号：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="借款日期：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="借款金额：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <template>
+              <el-col :span="8">
+                <el-form-item label="项目编号：" prop="noticeTitle">
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="项目名称：" prop="noticeTitle">
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="金额：" prop="noticeTitle">
+                </el-form-item>
+              </el-col>
+            </template>
+            <el-col :span="16">
+              <el-form-item label="核销发票总计：" prop="noticeTitle" label-width="120px">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="支出总计：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="24">
+              <el-table
+                  :data="[]"
+                  style="width: 100%">
+                  <el-table-column
+                    prop="date"
+                    label="类别"
+                    width="250">
+                  </el-table-column>
+                  <el-table-column
+                    prop="name"
+                    label="金额"
+                    width="250">
+                  </el-table-column>
+                  <el-table-column
+                    prop="address"
+                    label="后续操作"
+                    width="250">
+                  </el-table-column>
+                </el-table>
+            </el-col>
+            <el-col :span="24">
+              <el-form-item label="附件" prop="noticeType">
+              
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="借款状态：" prop="noticeTitle">
+                <el-select v-model="form.status" placeholder="" clearable>
+                  <el-option :value="0" label="待借出"/>
+                  <el-option :value="1" label="借款中"/>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            
+            <el-col :span="8">
+              <el-form-item label="审核状态：">
+
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <p>票面开票日期:2024-02-27</p>
+        </template>
+        <template v-else>
+           <el-row>
             <el-col :span="8">
               <el-form-item label="项目编号：" prop="noticeTitle">
               </el-form-item>
@@ -199,63 +272,47 @@
               </el-form-item>
             </el-col>
             <el-col :span="8">
-              <el-form-item label="金额：" prop="noticeTitle">
+              <el-form-item label="备注：" prop="noticeTitle">
               </el-form-item>
             </el-col>
-          </template>
-          <el-col :span="16">
-            <el-form-item label="核销发票总计：" prop="noticeTitle" label-width="120px">
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="支出总计：" prop="noticeTitle">
-            </el-form-item>
-          </el-col>
-          <el-col :span="24">
-             <el-table
-                :data="[]"
-                style="width: 100%">
-                <el-table-column
-                  prop="date"
-                  label="类别"
-                  width="250">
-                </el-table-column>
-                <el-table-column
-                  prop="name"
-                  label="金额"
-                  width="250">
-                </el-table-column>
-                <el-table-column
-                  prop="address"
-                  label="后续操作"
-                  width="250">
-                </el-table-column>
-              </el-table>
-          </el-col>
-          <el-col :span="24">
-            <el-form-item label="附件" prop="noticeType">
-             
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="借款状态：" prop="noticeTitle">
-              <el-radio-group v-model="form.status">
-                <!-- <el-radio
-                  v-for="dict in dict.type.sys_notice_status"
-                  :key="dict.value"
-                  :label="dict.value"
-                >{{dict.label}}</el-radio> -->
-              </el-radio-group>
-            </el-form-item>
-          </el-col>
-          
-          <el-col :span="8">
-            <el-form-item label="审核状态：">
-
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <p>票面开票日期:2024-02-27</p>
+            <el-col :span="8">
+              <el-form-item label="项目编号：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="项目名称：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="项目备注：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="借款对象：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="开户行：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="8">
+              <el-form-item label="银行账号：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="24">
+              <el-form-item label="借款金额：" prop="noticeTitle">
+              </el-form-item>
+            </el-col>
+            <el-col :span="24">
+              <el-form-item label="借款状态：" prop="noticeTitle">
+                <el-select v-model="form.status" placeholder="" clearable>
+                  <el-option :value="0" label="待借出"/>
+                  <el-option :value="1" label="借款中"/>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </template>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm">确 定</el-button>
@@ -302,7 +359,8 @@ export default {
       form: {},
       rules: {},
       open: false,
-      title: '查看'
+      title: '查看',
+      state: 1
     };
   },
   created() {

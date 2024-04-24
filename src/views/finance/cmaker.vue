@@ -177,7 +177,7 @@
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template> -->
       </el-table-column>
-      <el-table-column label="供应上发票" align="center" prop="status">
+      <el-table-column label="供应商发票" align="center" prop="status">
         <!-- <template slot-scope="scope">
           <dict-tag :options="dict.type.sys_common_status" :value="scope.row.status"/>
         </template> -->
