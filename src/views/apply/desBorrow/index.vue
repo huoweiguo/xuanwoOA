@@ -5,7 +5,7 @@
         <el-button @click="open = true" type="primary" size="mini">添加借款申请</el-button>
       </el-col>
       <el-col :span="1.5">
-        <el-button @click="open = true" type="primary" size="mini">添加核销申请</el-button>
+        <el-button @click="open2 = true" type="primary" size="mini">添加核销申请</el-button>
       </el-col>
       <el-col :span="1.5">
         <span class="fw-700">借款总额：110000</span>
@@ -112,82 +112,82 @@
         @pagination="getList"
       />
 
-      <el-table class="mt-20" v-loading="loading" :data="tableList" @selection-change="handleSelectionChange" border>
-        <el-table-column label="序号" type="index" width="50" align="center">
-          <template slot-scope="scope">
-            <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-          label="借款编号"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="借款金额"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="借款状态"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="核销金额"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="借款/核销差额"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="发票金额（含冲票）"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="发票/核销差额"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="审核状态"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="补齐/退回"
-          align="center"
-          prop=""
-          :show-overflow-tooltip="true"
-        />
-        <el-table-column
-          label="操作"
-          align="center"
-          width="160"
-          class-name="small-padding fixed-width"
-          fixed="right"
-        >
-          <template>
-            <el-button
-              type="text"
-              size="small"
-              icon="el-icon-view"
-            >查看</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
+    <el-table class="mt-20" v-loading="loading" :data="tableList" @selection-change="handleSelectionChange" border>
+      <el-table-column label="序号" type="index" width="50" align="center">
+        <template slot-scope="scope">
+          <span>{{(queryParams.pageNum - 1) * queryParams.pageSize + scope.$index + 1}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="借款编号"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="借款金额"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="借款状态"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="核销金额"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="借款/核销差额"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="发票金额（含冲票）"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="发票/核销差额"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="审核状态"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="补齐/退回"
+        align="center"
+        prop=""
+        :show-overflow-tooltip="true"
+      />
+      <el-table-column
+        label="操作"
+        align="center"
+        width="160"
+        class-name="small-padding fixed-width"
+        fixed="right"
+      >
+        <template>
+          <el-button
+            type="text"
+            size="small"
+            icon="el-icon-view"
+          >查看</el-button>
+        </template>
+      </el-table-column>
+     </el-table>
       <pagination
         v-show="total>0"
         :total="total"
@@ -195,6 +195,180 @@
         :limit.sync="queryParams.pageSize"
         @pagination="getList"
       />
+    <!-- 添加借款申请 -->
+    <el-dialog :title="title" :visible.sync="open" width="1080px" append-to-body>
+      <el-form ref="form" label-position="top" :model="form" :rules="rules" label-width="120px">
+        <el-row>
+          <el-col :span="5">
+            <el-form-item label="项目编号：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="1">
+            <el-form-item label="项目名称：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="2">
+            <el-form-item label="备注：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="3">
+            <div class="button-new">
+              <el-button class="button-new-tag" type="danger">删除</el-button>
+              <el-button class="button-new-tag" type="primary">+ 添加</el-button>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row >
+          <el-col :span="5">
+            <el-form-item label="借款对象：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="1">
+            <el-form-item label="开户行：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="2">
+            <el-form-item label="银行账号：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="5">
+            <el-form-item label="借款金额：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="1">
+            <el-form-item label="借款日期：" prop="">
+              <el-date-picker
+                type="date"
+                placeholder="选择日期">
+              </el-date-picker>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
+    <!-- 添加核销申请 -->
+    <el-dialog :title="title" :visible.sync="open2" width="1080px" append-to-body>
+      <el-form ref="form" label-position="top" :model="form" :rules="rules" label-width="120px">
+        <el-row >
+          <el-col :span="5">
+            <el-form-item label="借款编号：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="1">
+            <el-form-item label="借款日期：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="2">
+            <el-form-item label="借款金额：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="5">
+            <el-form-item label="项目编号：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="1">
+            <el-form-item label="项目名称：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="2">
+            <el-form-item label="金额：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+          <el-col :span="5" :push="3">
+            <div class="button-new">
+              <el-button class="button-new-tag" type="danger">删除</el-button>
+              <el-button class="button-new-tag" type="primary">+ 添加</el-button>
+            </div>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="5">
+            <el-form-item label="核销发票总计：" prop="">
+              <el-input/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row class="mt-20">
+          <el-col :span="5">
+            类别
+          </el-col>
+          <el-col :span="5" :push="1">
+            金额
+          </el-col>
+          <el-col :span="5" :push="2">
+            后续操作
+          </el-col>
+        </el-row>
+        <el-row class="mt-20">
+          <el-col :span="5">
+            借款/核销差额
+          </el-col>
+          <el-col :span="5" :push="1">
+            -100
+          </el-col>
+          <el-col :span="5" :push="2">
+            需财务补齐
+          </el-col>
+        </el-row>
+        <el-row class="mt-20">
+          <el-col :span="5">
+            发票/核销差额
+          </el-col>
+          <el-col :span="5" :push="1">
+             +100
+          </el-col>
+          <el-col :span="5" :push="2">
+            无
+          </el-col>
+        </el-row>
+        <el-row class="mt-20">
+          <el-col :span="8">
+            <el-form-item label="合同：" prop="">
+              <FileUpload disabled :limit="1"/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="submitForm">确 定</el-button>
+          <el-button @click="cancel">取 消</el-button>
+        </div>
+    </el-dialog>
+    <!-- 撤回 -->
+    <el-dialog :title="cancelTitle" :visible.sync="cancelOpen" width="780px" append-to-body>
+      <el-form ref="form" :model="cancelForm" :rules="cancelRules" label-width="120px">
+        <el-col :span="24">
+            <el-form-item label="撤回原因：" prop="">
+              <el-input  type="textarea" :rows="2"/>
+            </el-form-item>
+          </el-col>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm">确 定</el-button>
+        <el-button @click="cancel">取 消</el-button>
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -229,8 +403,9 @@ export default {
       },
       // 添加付款申请
       open: false,
+      open2: false,
       cancelOpen:false,
-      title: '添加付款申请',
+      title: '添加借款申请',
       cancelTitle:'撤回'
     }
   },
@@ -314,6 +489,9 @@ export default {
   margin:0px 10px 10px 0;
 }
 .mt-20{
+  margin-top: 20px;
+}
+.button-new{
   margin-top: 20px;
 }
 ::v-deep .el-form-item--medium .el-form-item__label{
